@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_marginTop="200dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/andriod"
+        android:layout_marginBottom="20dp"
+        />
+
+    <EditText
+        android:id="@+id/SignInEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="#E1DFDF"
+        android:drawableLeft="@drawable/ic_action_name"
+        android:hint="Email"
+        android:textColor="@color/black"
+        android:padding="12dp"/>
+
+    <EditText
+        android:padding="12dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/SignInPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="#E1DFDF"
+        android:drawableStart="@drawable/ic_action_password"
+        android:hint="password"
+        android:inputType="textPassword"
+         android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/SignInButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/material_on_background_disabled"
+        android:text="Submit"
+        android:layout_margin="10dp"
+        android:background="@color/red_500"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SignUpText"
+        android:gravity="center"
+        android:text="Are you not registered? Sign Up"
+        />
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:id="@+id/progressbar"
+        />
+</LinearLayout>

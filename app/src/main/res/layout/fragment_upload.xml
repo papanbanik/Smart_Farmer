@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:weightSum="3.5">
+
+   <Button
+        android:id="@+id/chooseButton"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.25"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose Image"
+        style="@style/CardView.Light"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25"
+        android:id="@+id/imageNameEditText"
+        android:hint="Enter your name for image"
+        style="@style/Widget.AppCompat.EditText" />
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/imageView"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1.5"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25"
+        android:id="@+id/imageDescriptionEditText"
+        android:hint="Enter your Descrption for image"
+        style="@style/Widget.AppCompat.EditText"  />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_weight="0.25"
+        android:layout_gravity="center"
+        android:id="@+id/progressBar"/>
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.25"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SaveImage"
+        style="@style/CardView.Light" />
+
+
+</LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/person"
+        />
+    <item
+        android:id="@+id/about"
+        android:title="About"
+        android:icon="@drawable/baseline_add_home_work_24"
+        />
+
+    <item
+        android:id="@+id/blog"
+        android:title="Post"
+        android:icon="@drawable/posts"
+        />
+
+    <item
+        android:id="@+id/account"
+        android:title="Account"
+        android:icon="@drawable/fruit"
+        />
+
+
+
+
+
+</menu>

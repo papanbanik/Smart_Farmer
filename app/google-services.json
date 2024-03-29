@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "329604959580",
+    "project_id": "login-register-firebase-5121a",
+    "storage_bucket": "login-register-firebase-5121a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329604959580:android:05f408d76b5174880d4599",
+        "android_client_info": {
+          "package_name": "app.ij.mlwithtensorflowlite"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH78hGboAikbZcvl9cS6A_mCBxEsG5v60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329604959580:android:ee9cc8760deb1c9e0d4599",
+        "android_client_info": {
+          "package_name": "com.example.myapplication4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH78hGboAikbZcvl9cS6A_mCBxEsG5v60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
