@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
@@ -92,6 +93,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
                 if (task.isSuccessful()) {
+
                     SignInMethodQueryResult result = task.getResult();
                     if (result != null && result.getSignInMethods() != null && result.getSignInMethods().size() > 0) {
                         // User with this email already exists
@@ -104,6 +106,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressbar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
+                                    sendEmailVerification();
+
                                     Toast.makeText(getApplicationContext(), "Registration is successful", Toast.LENGTH_SHORT).show();
                                 } else {
                                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
@@ -118,6 +122,25 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 }
             }
         });
+    }
+
+    private void sendEmailVerification() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            ((FirebaseUser) user).sendEmailVerification()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                // Email sent
+                                Toast.makeText(getApplicationContext(), "Verification email sent", Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Failed to send email
+                                Toast.makeText(getApplicationContext(), "Failed to send verification email", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
     }
 
     // TextWatcher for live email validation

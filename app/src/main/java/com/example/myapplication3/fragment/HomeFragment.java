@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -33,7 +32,6 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Objects;
-
 public class HomeFragment extends Fragment {
 
     TextView result, confidence;
@@ -67,7 +65,6 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-
         return rootView;
     }
 
@@ -94,7 +91,6 @@ public class HomeFragment extends Fragment {
                     byteBuffer.putFloat((val & 0xFF) * (1.f / 255.f));
                 }
             }
-
             inputFeature0.loadBuffer(byteBuffer);
 
             // Runs model inference and gets result.
@@ -117,7 +113,6 @@ public class HomeFragment extends Fragment {
         } catch (IOException e) {
             // TODO Handle the exception
         }
-
     }
 
     @Override

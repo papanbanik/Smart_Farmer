@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
     private EditText SignInEmail, SignInPassword;
@@ -31,12 +32,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_login);
 
         this.setTitle("Sign In Activity");
-        mAuth=FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         SignInEmail = findViewById(R.id.SignInEmail);
         SignInPassword = findViewById(R.id.SignInPassword);
         Button signInButton = findViewById(R.id.SignInButton);
         TextView signUpText = findViewById(R.id.SignUpText);
-        progressbar=findViewById(R.id.progressbar);
+        progressbar = findViewById(R.id.progressbar);
         signUpText.setOnClickListener(this);
         signInButton.setOnClickListener(this);
 
@@ -77,8 +78,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             } else {
                 Toast.makeText(getApplicationContext(), "Invalid email format", Toast.LENGTH_SHORT).show();
             }
-        }
-        else if (v.getId() == R.id.SignUpText) {
+        } else if (v.getId() == R.id.SignUpText) {
             Intent intent = new Intent(Login.this, SignUp.class);
             startActivity(intent);
         }
@@ -101,14 +101,21 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
 
         progressbar.setVisibility(View.VISIBLE);
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressbar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(getApplicationContext(), Dashboard.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+                    // Check if the user's email is verified
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    if (user != null && user.isEmailVerified()) {
+                        Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    } else {
+                        // User's email is not verified
+                        Toast.makeText(getApplicationContext(), "Please verify your email address before logging in", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(), "Login Unsuccessful", Toast.LENGTH_SHORT).show();
                 }

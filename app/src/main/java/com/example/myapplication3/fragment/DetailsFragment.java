@@ -2,7 +2,9 @@ package com.example.myapplication3.fragment;
 import com.example.myapplication3.fragment.CustomAdapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,7 +93,7 @@ public class DetailsFragment extends Fragment {
     private void loadNextPage() {
         // currentPage++;
         // Navigate to the NextPageActivity
-        // Intent intent = new Intent(Details.this, NextPage.class);
+        // Intent intent = new Intent(DetailsFragment.this, .class);
         // startActivity(intent);
     }
 

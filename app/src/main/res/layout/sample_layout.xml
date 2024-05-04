@@ -7,12 +7,11 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-
     <androidx.cardview.widget.CardView
         android:layout_marginStart="60dp"
         android:layout_marginTop="55dp"
-        android:layout_width="300dp"
-        android:layout_height="230dp"
+        android:layout_width="350dp"
+        android:layout_height="380dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         android:background="@drawable/card"
@@ -23,10 +22,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp"
-            android:background="@color/red_200">
+            android:background="@color/shadow">
 
             <ImageView
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="50dp"
                 android:id="@+id/imageView"
                 android:layout_width="200dp"
                 android:layout_height="100dp"
@@ -42,7 +41,6 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textAlignment="center"/>
-
             <TextView
                 android:id="@+id/nameDescriptionViewId"
                 android:layout_width="match_parent"
@@ -52,19 +50,18 @@
                 android:textSize="10sp"
                 android:textAlignment="center"
                 tools:ignore="SmallSp" />
-
-
         </LinearLayout>
+
         <ImageView
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="200dp"
             android:layout_marginLeft="0dp"
             android:id="@+id/likeButton"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
             android:src="@drawable/like" />
         <TextView
-            android:layout_marginTop="180dp"
-            android:layout_marginLeft="80dp"
+            android:layout_marginTop="190dp"
+            android:layout_marginLeft="70dp"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:textStyle="bold"
@@ -72,11 +69,49 @@
             android:text=""
             android:id="@+id/likeCountTextView"
              />
+        <ImageView
+            android:layout_marginTop="205dp"
+            android:layout_marginLeft="265dp"
+            android:id="@+id/dislikeButton"
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:src="@drawable/img_5" />
+        <TextView
+            android:layout_marginTop="190dp"
+            android:layout_marginLeft="260dp"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:textStyle="bold"
+            android:textSize="40dp"
+            android:text=""
+            android:id="@+id/dislikeCountTextView"/>
+        <EditText
+            android:id="@+id/commentEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Add a comment..."
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:layout_marginTop="240dp"
+            android:layout_marginHorizontal="16dp" />
 
+        <Button
+            android:id="@+id/commentButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Comment"
+            android:layout_marginTop="280dp"
+            android:layout_marginHorizontal="16dp" />
 
+        <TextView
+            android:id="@+id/commentTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_marginTop="320dp"
+            android:layout_marginHorizontal="16dp" />
     </androidx.cardview.widget.CardView>
-
-
-
 
 </FrameLayout>

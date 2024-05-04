@@ -6,7 +6,6 @@ public class UploadWithKey {
     public UploadWithKey() {
         // Required empty public constructor
     }
-
     public UploadWithKey(String key, Upload upload) {
         this.key = key;
         this.upload = upload;
