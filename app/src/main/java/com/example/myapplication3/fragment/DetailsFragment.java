@@ -56,15 +56,11 @@ public class DetailsFragment extends Fragment {
                 loadNextPage();
             }
         });
-
         databaseReference = FirebaseDatabase.getInstance().getReference("upload");
-
         // Fetch data for the initial page
         fetchData();
-
         return view;
     }
-
     private void fetchData() {
         int start = (currentPage - 1) * itemsPerPage; // Calculate the start index
         Query query = databaseReference.orderByKey().startAt(Integer.toString(start)).limitToFirst(itemsPerPage);
@@ -81,14 +77,12 @@ public class DetailsFragment extends Fragment {
                 }
                 customAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Handle error
             }
         });
     }
-
     // Method to load next page
     private void loadNextPage() {
         // currentPage++;

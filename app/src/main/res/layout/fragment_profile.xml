@@ -100,5 +100,11 @@
             android:onClick="showDatePickerDialog" />
 
     </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="550dp"
+        android:layout_marginLeft="100dp"
+        android:text="@string/smart_farmer_app_owned_by_papon_banik"/>
 
 </LinearLayout>

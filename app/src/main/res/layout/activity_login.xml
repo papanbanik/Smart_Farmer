@@ -29,18 +29,19 @@
         android:padding="12dp"/>
 
     <EditText
-        android:padding="12dp"
-        android:layout_marginTop="5dp"
         android:id="@+id/SignInPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="50dp"
         android:background="#E1DFDF"
         android:drawableStart="@drawable/ic_action_password"
+        android:drawableEnd="@drawable/ic_visibility_off"
         android:hint="password"
         android:inputType="textPassword"
-         android:textColor="@color/black" />
+        android:padding="12dp"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/SignInButton"

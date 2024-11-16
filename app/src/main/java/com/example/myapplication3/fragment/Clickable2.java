@@ -2,11 +2,9 @@ package com.example.myapplication3.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +24,6 @@ public class Clickable2 extends Fragment {
         TextView clickable1 = rootView.findViewById(R.id.clickable1);
         TextView clickable2 = rootView.findViewById(R.id.clickable2);
         TextView clickable3 = rootView.findViewById(R.id.clickable3);
-
         // Set click listeners for each clickable TextView
         clickable1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,13 +31,9 @@ public class Clickable2 extends Fragment {
                 clickable1Clicked();
             }
         });
-
-
         // Method to be executed when clickable2 is clicked
         return rootView;
     }
-
-
     private void clickable1Clicked() {
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -49,5 +42,4 @@ public class Clickable2 extends Fragment {
         fragmentTransaction.commit();
     }
     // Method to be executed when clickable3 is clicked
-
 }

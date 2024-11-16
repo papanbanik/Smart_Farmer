@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,12 +21,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
+
     private EditText SignInEmail, SignInPassword;
     private TextView SignUpText;
     private Button SignInButton;
-    ProgressBar progressbar;
+    private ProgressBar progressbar;
     private FirebaseAuth mAuth;
     private boolean isEmailValid = false;
+    private boolean isPasswordVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,23 +37,36 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         this.setTitle("Sign In Activity");
         mAuth = FirebaseAuth.getInstance();
+
         SignInEmail = findViewById(R.id.SignInEmail);
         SignInPassword = findViewById(R.id.SignInPassword);
-        Button signInButton = findViewById(R.id.SignInButton);
-        TextView signUpText = findViewById(R.id.SignUpText);
+        SignInButton = findViewById(R.id.SignInButton);
+        SignUpText = findViewById(R.id.SignUpText);
         progressbar = findViewById(R.id.progressbar);
-        signUpText.setOnClickListener(this);
-        signInButton.setOnClickListener(this);
+
+        SignUpText.setOnClickListener(this);
+        SignInButton.setOnClickListener(this);
 
         // Add TextWatcher to the email field for live validation
         SignInEmail.addTextChangedListener(emailTextWatcher);
+
+        // Set up the password visibility toggle
+        SignInPassword.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                // Check if touch is on the drawableEnd (visibility icon)
+                if (event.getRawX() >= (SignInPassword.getRight() - SignInPassword.getCompoundDrawables()[2].getBounds().width())) {
+                    togglePasswordVisibility();
+                    return true;
+                }
+            }
+            return false;
+        });
     }
 
     // TextWatcher for live email validation
     private TextWatcher emailTextWatcher = new TextWatcher() {
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -57,8 +74,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
 
         @Override
-        public void afterTextChanged(Editable s) {
-        }
+        public void afterTextChanged(Editable s) {}
     };
 
     // Validate email format
@@ -68,6 +84,21 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         } else {
             isEmailValid = false;
         }
+    }
+
+    // Toggle password visibility
+    private void togglePasswordVisibility() {
+        if (isPasswordVisible) {
+            // Hide password
+            SignInPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            SignInPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_password, 0, R.drawable.ic_visibility_off, 0);
+        } else {
+            // Show password
+            SignInPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            SignInPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_password, 0, R.drawable.ic_visibility_off, 0);
+        }
+        isPasswordVisible = !isPasswordVisible;
+        SignInPassword.setSelection(SignInPassword.length()); // Move cursor to end
     }
 
     @Override

@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -62,7 +63,7 @@ public class CustomAdapter extends ArrayAdapter<UploadWithKey> {
         TextView dislikeCountTextView = view.findViewById(R.id.dislikeCountTextView);
         EditText commentEditText = view.findViewById(R.id.commentEditText);
         Button commentButton = view.findViewById(R.id.commentButton);
-        TextView commentTextView = view.findViewById(R.id.commentTextView);
+        LinearLayout commentLayout = view.findViewById(R.id.commentContainer); // Change this to LinearLayout
 
         nameTextView.setText(upload.getImageName());
         Picasso.get().load(upload.getImageUrl()).into(imageView);
@@ -122,7 +123,7 @@ public class CustomAdapter extends ArrayAdapter<UploadWithKey> {
         });
 
         // Display comments for the current post
-        displayComments(uploadKey, commentTextView);
+        displayComments(uploadKey, commentLayout);
 
         return view;
     }
@@ -200,28 +201,34 @@ public class CustomAdapter extends ArrayAdapter<UploadWithKey> {
             }
         });
     }
-
-
     private void addComment(String uploadKey, String commentText) {
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference postCommentsRef = mDatabaseComments.child(uploadKey);
         String commentId = postCommentsRef.push().getKey();
         postCommentsRef.child(commentId).setValue(commentText);
     }
-
-    private void displayComments(String uploadKey, TextView commentTextView) {
+    private void displayComments(String uploadKey, LinearLayout commentLayout) {
         DatabaseReference postCommentsRef = mDatabaseComments.child(uploadKey);
+
         postCommentsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                StringBuilder comments = new StringBuilder();
+                // Clear the existing comments from the layout to avoid duplicates
+                commentLayout.removeAllViews();
+
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String commentText = snapshot.getValue(String.class);
                     if (commentText != null) {
-                        comments.append(commentText).append("\n");
+                        // Create a new TextView for each comment
+                        TextView commentTextView = new TextView(context);
+                        commentTextView.setText(commentText);
+                        commentTextView.setTextSize(16);
+                        commentTextView.setPadding(8, 8, 8, 8);
+
+                        // Add the comment TextView to the LinearLayout
+                        commentLayout.addView(commentTextView);
                     }
                 }
-                commentTextView.setText(comments.toString());
             }
 
             @Override
@@ -230,4 +237,5 @@ public class CustomAdapter extends ArrayAdapter<UploadWithKey> {
             }
         });
     }
+
 }

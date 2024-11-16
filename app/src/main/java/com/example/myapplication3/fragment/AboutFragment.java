@@ -34,7 +34,7 @@ public class AboutFragment extends Fragment implements OnMapReadyCallback {
         webView = rootView.findViewById(R.id.webview);
         // Enable JavaScript
         webView.getSettings().setJavaScriptEnabled(true);
-        String videoUrl = "https://www.youtube.com/embed/cT_sMWI97PY";
+        String videoUrl = "https://www.youtube.com/embed/r6jE5FUbxSo";
         String html = "<html><body style=\"margin:0;padding:0;\"><iframe width=\"100%\" height=\"100%\" src=\"" + videoUrl + "\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
         webView.loadData(html, "text/html", "utf-8");
 
